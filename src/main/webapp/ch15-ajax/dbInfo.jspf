@@ -1,0 +1,8 @@
+<%@ page language="java" contentType="text/xml; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+String driverName = "oracle.jdbc.OracleDriver";
+String jdbcUrl = "jdbc:oracle:thin:@61.74.171.253:1521:xe";
+String dbId = "c##user001";
+String dbPass = "1234";
+%>
