@@ -44,6 +44,7 @@
 <%		
 		e.printStackTrace();
 	}finally{
+		//자원정리
 		if(pstmt!=null)try{pstmt.close();}catch(SQLException e){}
 		if(conn!=null)try{conn.close();}catch(SQLException e){}
 	}

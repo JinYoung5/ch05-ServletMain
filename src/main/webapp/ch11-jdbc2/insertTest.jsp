@@ -1,4 +1,3 @@
-<%@page import="oracle.jdbc.proxy.annotation.Pre"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.DriverManager" %>    
@@ -10,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>제품 등록</title>
+<title>상품 등록 처리</title>
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
