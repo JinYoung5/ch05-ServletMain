@@ -22,6 +22,16 @@
 		pstmt = conn.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		
+		while(rs.next()){
+%>
+	<item>
+		<code><%= rs.getInt("code") %></code>
+		<name><%= rs.getString("name") %></name>
+		<quantity><%= rs.getInt("quantity") %></quantity>
+		<price><%= rs.getInt("price") %></price>
+	</item>
+<%
+		}
 	}catch(Exception e){
 		e.printStackTrace();
 	}finally{
