@@ -22,6 +22,7 @@
 		<%
 			}else{ //로그인 된 경우
 		%>
+		<a href="myPage.jsp">MyPage</a>
 		[<b><%= user_id %></b>님 로그인 중]
 		<a href="logout.jsp">로그아웃</a>
 		<%
