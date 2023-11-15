@@ -70,7 +70,8 @@ public class BoardDAO {
 		int count = 0;
 		
 		try {
-			
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
