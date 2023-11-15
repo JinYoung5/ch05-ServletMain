@@ -17,17 +17,45 @@
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.checkMember(id);
 		boolean check = false;
+		
+		if(member!=null && user_id.equals(id)){ //아이디가 등록되어 있고 로그인한 아이디와 일치할 경우 비밀번호 일치 여부 체크
+			check = member.isCheckedPassword(passwd);
+		}
+		if(check){ //인증 성공
+			//회원 정보 삭제
+			dao.deleteMember(member.getNum());
+			//로그아웃
+			session.invalidate();
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 탈퇴</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div class="page-main">
+	<h1>회원탈퇴 완료</h1>
+	<div class="result-display">
+		<div class="align-center">
+			회원탈퇴가 완료 되었습니다.<br>
+			<button onlclick="location.href='main.jsp'">홈으로</button>
+		</div>
+	</div>
+</div>
 </body>
 </html>
+		
 <%
+		}else{ //인증 실패
+%>
+	<script>
+	 alert('아이디 또는 비밀번호가 불일치합니다.');
+	 history.go(-1);
+	</script>
+<%
+		}
 	}
 %>
