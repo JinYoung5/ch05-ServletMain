@@ -68,18 +68,27 @@ public class BoardDAO {
 		ResultSet rs = null;
 		String sql = null;
 		int count = 0;
-		
-		try {
-			//커넥션풀로부터 커넥션을 할당
-			conn = DBUtil.getConnection();
-		}catch(Exception e) {
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(rs, pstmt, conn);
+
+	try {
+		//커넥션풀로부터 커넥션을 할당
+		conn = DBUtil.getConnection();
+		//SQL문 작성
+		sql = "SELECT COUNT(*) FROM smboard";
+		//PreparedStatement 객체 생성
+		pstmt = conn.prepareStatement(sql);
+		//SQL문 실행
+		rs = pstmt.executeQuery();
+		if(rs.next()) { //행이 하나면 if, 많으면 while
+			count = rs.getInt(1);
 		}
 		
-		return count;
-	}
+	}catch(Exception e) {
+		throw new Exception(e);
+	}finally {
+		DBUtil.executeClose(rs, pstmt, conn);
+	}	
+	return count;
+}
 	//글 목록
 	public List<BoardVO> getList(int startRow, int endRow)throws Exception{
 		Connection conn = null;
@@ -92,9 +101,12 @@ public class BoardDAO {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "SELECT * FROM smboard ORDER BY num DESC";
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM smboard ORDER BY num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			
 			//SQL문 실행
 			rs = pstmt.executeQuery();
