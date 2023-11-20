@@ -9,6 +9,8 @@
 <title>set 태그</title>
 </head>
 <body>
+<%-- WEB-INF 폴더에 lib-> jstl.jar 파일이 들어가있어야 jstl사용가능 --%>
+
 <%--	속성명		속성값		저장 영역(기본값 : page) --%>
 <c:set var="msg" value="봄" scope="page" />
 ${pageScope.msg}, ${msg}<br>

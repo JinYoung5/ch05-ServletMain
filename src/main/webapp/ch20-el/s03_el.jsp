@@ -19,6 +19,6 @@ page 영역 : <%= pageContext.getAttribute("msg") %>, ${pageScope.msg}, ${msg}<b
 request 영역 : <%= request.getAttribute("msg2") %>, ${requestScope.msg2}, ${msg2}<br>
 session 영역 : <%= session.getAttribute("msg3") %>, ${session.msg3}, ${msg3}<br>
 application 영역 : <%= application.getAttribute("msg4") %>, ${applicationScope.msg4}, ${msg4}<br>
-str의 값 : <%= str %>, ${str}
+str의 값 : <%= str %>, ${str} 
 </body>
 </html>
